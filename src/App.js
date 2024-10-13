@@ -1,23 +1,20 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import UserSelect from './components/UserSelect';
+import ClaimButton from './components/ClaimButton';
+import Leaderboard from './components/Leaderboard';
 import './App.css';
 
 function App() {
+  const [selectedUser, setSelectedUser] = useState('');
+  const [pointsClaimed, setPointsClaimed] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Leaderboard System</h1>
+      <UserSelect selectedUser={selectedUser} setSelectedUser={setSelectedUser} />
+      <ClaimButton selectedUser={selectedUser} onPointsClaimed={setPointsClaimed} />
+      {pointsClaimed !== null && <p>Points Claimed: {pointsClaimed}</p>}
+      <Leaderboard />
     </div>
   );
 }
